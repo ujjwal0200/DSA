@@ -1,0 +1,46 @@
+let numRows = 1,
+  s = "AB";
+
+let matrix = [];
+
+for (let i = 0; i < numRows; i++) {
+  let arr = [];
+  for (let j = 0; j < Math.floor(s.length / numRows) + numRows; j++) {
+    arr.push("");
+  }
+
+  matrix.push(arr);
+}
+
+let rows = 0,
+  columns = 0,
+  flag = false;
+
+for (let k = 0; k < s.length; k++) {
+  matrix[rows][columns] = s[k];
+
+  if (rows == numRows - 1) {
+    flag = true;
+  } else if (rows == 0) {
+    flag = false;
+  }
+
+  if (flag) {
+    rows--;
+    columns++;
+  } else {
+    rows++;
+  }
+}
+
+let res = "";
+
+for (let i = 0; i < numRows; i++) {
+  let str = "";
+  for (let j = 0; j < Math.floor(s.length / numRows) + numRows; j++) {
+    str += matrix[i][j];
+  }
+  res += str;
+}
+
+console.log(res);
